@@ -2,16 +2,27 @@ package com.ballu.falloutcardgame;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JButton;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
-public class Main implements ActionListener {
-	public static JFrame	frame	= new JFrame("Card Game");
-	private static JButton	quit	= new JButton("Quit");
-	public static JPanel	panel	= new JPanel();
-	private static int		extendedWidth;
-	private static int		extendedHeight;
+import com.ballu.falloutcardgame.labels.PictureLabel;
+
+public class Main implements ActionListener, MouseListener {
+	public static JFrame			frame	= new JFrame("Card Game");
+	public static JPanel			panel	= new JPanel();
+	private static int				extendedWidth;
+	private static int				extendedHeight;
+	private static PictureLabel		quest	= new PictureLabel("Quest");
+	private static PictureLabel		multi	= new PictureLabel("MP [WIP]");
+	private static PictureLabel		deck	= new PictureLabel("Edit Deck");
+	private static PictureLabel		option	= new PictureLabel("Options");
+	private static PictureLabel		quit	= new PictureLabel("Quit");
+	
+	private static PictureLabel[]	labels	= { quest, multi, deck, option };
 	
 	public static void main(String[] args) {
 		frame.setLayout(null);
@@ -25,9 +36,12 @@ public class Main implements ActionListener {
 		extendedHeight = frame.getHeight();
 		panel.setSize(extendedWidth, extendedHeight);
 		panel.setLocation(0, 0);
-		quit.addActionListener(new Main());
-		quit.setBounds(10, extendedHeight - 50, 100, 20);
-		frame.repaint();
+		int parts = extendedHeight / 5;
+		for (int i = 0; i < labels.length; i++) {
+			labels[i].setLocation(extendedWidth - 100, parts * i);
+			panel.add(labels[i]);
+		}
+		quit.setLocation(0, extendedHeight - 100);
 		panel.add(quit);
 		frame.add(panel);
 		panel.repaint();
@@ -44,5 +58,45 @@ public class Main implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		System.exit(0);
+	}
+	
+	@Override
+	public void mouseClicked(MouseEvent arg0) {
+		PictureLabel label = (PictureLabel) arg0.getSource();
+		
+		if (SwingUtilities.isLeftMouseButton(arg0)) {
+			switch (label.getText()) {
+				case "Quit":
+					System.exit(0);
+					break;
+				default:
+					System.out.println(label.getText() + " not registered");
+					break;
+			}
+		}
+	}
+	
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public void mousePressed(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 }
