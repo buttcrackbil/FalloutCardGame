@@ -26,7 +26,7 @@ public class Main implements ActionListener, MouseListener {
 	
 	public static void main(String[] args) {
 		frame.setLayout(null);
-		frame.setDefaultCloseOperation(3);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(500, 500);
 		frame.setUndecorated(true);
 		frame.setExtendedState(6);
@@ -66,7 +66,20 @@ public class Main implements ActionListener, MouseListener {
 		
 		if (SwingUtilities.isLeftMouseButton(arg0)) {
 			switch (label.getText()) {
+				case "Quest":
+					System.out.println("Starting quest");
+					break;
+				case "MP [WIP]":
+					System.out.println("Starting multiplayer");
+					break;
+				case "Edit Deck":
+					System.out.println("Starting deck editing");
+					break;
+				case "Options":
+					System.out.println("Starting options");
+					break;
 				case "Quit":
+					System.out.println("Quitting");
 					System.exit(0);
 					break;
 				default:
