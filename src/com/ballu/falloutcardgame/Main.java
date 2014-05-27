@@ -63,6 +63,7 @@ public class Main implements ActionListener, MouseListener {
 	
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
+		
 		PictureLabel label = (PictureLabel) arg0.getSource();
 		
 		if (SwingUtilities.isLeftMouseButton(arg0)) {
