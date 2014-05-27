@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import com.ballu.falloutcardgame.labels.PictureLabel;
+import com.ballu.falloutcardgame.quest.Quest;
 
 public class Main implements ActionListener, MouseListener {
 	public static JFrame			frame	= new JFrame("Card Game");
@@ -68,6 +69,7 @@ public class Main implements ActionListener, MouseListener {
 			switch (label.getText()) {
 				case "Quest":
 					System.out.println("Starting quest");
+					new Quest();
 					break;
 				case "MP [WIP]":
 					System.out.println("Starting multiplayer");
