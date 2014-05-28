@@ -22,11 +22,13 @@ public class Main implements ActionListener, MouseListener {
 	private static PictureLabel		deck	= new PictureLabel("Edit Deck");
 	private static PictureLabel		option	= new PictureLabel("Options");
 	private static PictureLabel		quit	= new PictureLabel("Quit");
+	public static String user;
 	
 	private static PictureLabel[]	labels	= { quest, multi, deck, option };
 	
-	public static void main(String[] args) {
+	public static void start(String user) {
 		frame.setLayout(null);
+		Main.user = user;
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(500, 500);
 		frame.setUndecorated(true);
