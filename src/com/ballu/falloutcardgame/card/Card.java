@@ -13,7 +13,7 @@ public abstract class Card extends JPanel {
 	protected JLabel	name;
 	protected JLabel	back;
 	
-	private Rectangle	nameRec	= new Rectangle(0, 0, 100, 20);
+	private Rectangle	nameRec	= new Rectangle(0, 0, 100, 40);
 	private Rectangle	backRec	= new Rectangle(0, 0, 100, 150);
 	
 	public boolean		enemy, weapon, chem, clothing, food, magazine, book,
@@ -25,7 +25,7 @@ public abstract class Card extends JPanel {
 	public Card(String title, String description) {
 		setLayout(null);
 		addMouseListener(new FlipListener());
-		String[] strings = { title, wrap(description) };
+		String[] strings = { wrap(title), wrap(description) };
 		setBackground(Color.GREEN);
 		System.out.println("Beginning card creation");
 		setSize(100, 150);
@@ -41,6 +41,11 @@ public abstract class Card extends JPanel {
 	private String wrap(String input) {
 		String output = "<html>" + input + "</html>";
 		return output;
+	}
+	
+	public Card setPlace(int x, int y){
+		setLocation(x, y);
+		return this;
 	}
 	
 	public String getName() {

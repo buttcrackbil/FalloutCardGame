@@ -2,6 +2,7 @@ package com.ballu.falloutcardgame.card.enemy;
 
 import java.awt.Font;
 import java.awt.Rectangle;
+import java.sql.Types;
 
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -10,18 +11,34 @@ import com.ballu.falloutcardgame.card.Card;
 
 public class Enemy extends Card {
 	
-	private JLabel		life, attack, upgrade;
-	private Rectangle	lifeRec		= new Rectangle(0, 110, 100, 20);
-	private Rectangle	attackRec	= new Rectangle(0, 130, 100, 20);
-	private Rectangle	upgradeRec	= new Rectangle(50, 0, 50, 50);
-	private JLabel[]	labels		= { life, attack, upgrade };
-	private Rectangle[]	bounds		= { lifeRec, attackRec, upgradeRec };
+	private JLabel					life, attack;
+	private Rectangle				lifeRec			= new Rectangle(0, 110,
+															100, 20);
+	private Rectangle				attackRec		= new Rectangle(0, 130,
+															100, 20);
+	private JLabel[]				labels			= { life, attack };
+	private Rectangle[]				bounds			= { lifeRec, attackRec };
 	
-	public Enemy(String string, String description, int life, int damage,
-			int level) {
-		super(string, description);
-		String[] strings = { "Health: " + convert(life),
-				"Attack: " + convert(damage), convert(level) };
+	// Card types
+	public static final int			INFERNO			= 0;
+	
+	// Names
+	private static final String[]	names			= {};
+	
+	// Info
+	private static final String[]	descriptions	= { "Cards attacked with this card will be damaged 1 health for 2 turns if caught on fire. 50% chance to set on fire" };
+	
+	// Health
+	private static final String[]	health			= {};
+	
+	// Attacks
+	private static final String[]	attacks			= {};
+	
+	public Enemy(int input) {
+		super(names[input], descriptions[input]);
+		
+		String[] strings = { "Health: " + health[input],
+				"Attack: " + attacks[input] };
 		System.out.println("Beginning Enemy Creation");
 		setEnemy(true);
 		for (int i = 0; i < labels.length; i++) {

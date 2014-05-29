@@ -4,13 +4,20 @@ import com.ballu.falloutcardgame.card.Card;
 
 public class Clothing extends Card {
 	
-	public Clothing(String title, String description) {
+	private int defense;
+	
+	public Clothing(String title, String description, int armor) {
 		super(title, description);
+		defense = armor;
 	}
 	
 	@Override
 	public void flip() {
 		
+	}
+	
+	public int getArmor(){
+		return defense;
 	}
 	
 }

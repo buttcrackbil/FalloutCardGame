@@ -1,18 +1,17 @@
 package com.ballu.falloutcardgame;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
+import com.ballu.falloutcardgame.card.enemy.American;
+import com.ballu.falloutcardgame.card.enemy.Enemy;
 import com.ballu.falloutcardgame.labels.PictureLabel;
-import com.ballu.falloutcardgame.user.Bar;
 import com.ballu.falloutcardgame.user.User;
 
 public class Main extends JFrame implements ActionListener, MouseListener {
@@ -25,23 +24,15 @@ public class Main extends JFrame implements ActionListener, MouseListener {
 	private static PictureLabel		option		= new PictureLabel("Options");
 	private static PictureLabel		switchUser	= new PictureLabel(
 														"Switch User");
-	
-	private static JPanel			userStats	= new JPanel();
-	
 	private static PictureLabel		quit		= new PictureLabel("Quit");
+	
 	public static String			user;
 	
 	private static PictureLabel[]	labels		= { quest, multi, deck, option,
 			switchUser							};
 	
-	//Keeps track of max stamina
+	// Keeps track of max stamina
 	private static String			maxMana;
-	
-	//For concept
-	private static Bar				bar			= new Bar(100, 0, Color.BLUE,
-														120, 0);
-	
-	private static JLabel notice = new JLabel("Click Quest to see bar updating");
 	
 	// Required for PictureLabel
 	public Main() {
@@ -50,6 +41,7 @@ public class Main extends JFrame implements ActionListener, MouseListener {
 	
 	public Main(String user) {
 		maxMana = User.loadUser(user)[0];
+		add(new American(Enemy.INFERNO).setPlace(0, 0));
 		setTitle("Fallout Card Game");
 		setLayout(null);
 		Main.user = user;
@@ -72,20 +64,6 @@ public class Main extends JFrame implements ActionListener, MouseListener {
 		panel.add(quit);
 		add(panel);
 		panel.repaint();
-		setupStats();
-	}
-	
-	private void setupStats() {
-		JLabel mana = new JLabel("Stamina: " + maxMana);
-		userStats.setBackground(Color.green);
-		mana.setBounds(120, 0, 100, 20);
-		notice.setBounds((panel.getWidth() - 200) / 2, (getHeight() - 20) / 2, 200, 20);
-		userStats.setLayout(null);
-		userStats.setLocation(0, 0);
-		userStats.setSize(getWidth() - 200, 100);
-		userStats.add(bar);
-		panel.add(userStats);
-		panel.add(notice);
 	}
 	
 	@Override
@@ -101,7 +79,6 @@ public class Main extends JFrame implements ActionListener, MouseListener {
 		if (SwingUtilities.isLeftMouseButton(arg0)) {
 			switch (label.getText()) {
 				case "Quest":
-					bar.updateBar(20);
 					System.out.println("Starting quest");
 					break;
 				case "MP [WIP]":
