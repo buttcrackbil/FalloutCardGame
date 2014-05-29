@@ -41,13 +41,13 @@ public class Enemy extends Card {
 	public void flip() {
 		if (!flipped) {
 			removeAll();
-			add(back);
+			add(super.labels[1]);
 			repaint();
 		} else {
 			for (int i = 0; i < labels.length; i++) {
 				add(labels[i]);
 			}
-			add(name);
+			add(super.labels[0]);
 			repaint();
 		}
 	}

@@ -12,22 +12,24 @@ public abstract class Card extends JPanel {
 	
 	protected JLabel	name;
 	protected JLabel	back;
+	
 	private Rectangle	nameRec	= new Rectangle(0, 0, 100, 20);
 	private Rectangle	backRec	= new Rectangle(0, 0, 100, 150);
+	
 	public boolean		enemy, weapon, chem, clothing, food, magazine, book,
 			selected, flipped, selectable;
 	
-	private JLabel[] labels = {name, back};
-	private Rectangle[] bounds = {nameRec, backRec};
+	protected JLabel[]	labels	= { name, back };
+	private Rectangle[]	bounds	= { nameRec, backRec };
 	
 	public Card(String title, String description) {
 		addMouseListener(new FlipListener());
-		String[] strings = {title, wrap(description)};
+		String[] strings = { title, wrap(description) };
 		setLayout(null);
 		setBackground(Color.GREEN);
 		System.out.println("Beginning card creation");
 		setSize(100, 150);
-		for(int i = 0; i <labels.length; i++){
+		for (int i = 0; i < labels.length; i++) {
 			labels[i] = new JLabel(strings[i]);
 			labels[i].setBounds(bounds[i]);
 			add(labels[i]);

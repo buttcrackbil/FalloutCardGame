@@ -23,7 +23,7 @@ public class Main implements ActionListener, MouseListener {
 	private static PictureLabel		deck	= new PictureLabel("Edit Deck");
 	private static PictureLabel		option	= new PictureLabel("Options");
 	private static PictureLabel		quit	= new PictureLabel("Quit");
-	public static String user;
+	public static String			user;
 	
 	private static PictureLabel[]	labels	= { quest, multi, deck, option };
 	
