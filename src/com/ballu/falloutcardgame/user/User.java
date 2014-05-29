@@ -13,7 +13,7 @@ public class User {
 	public static String[] loadUser(String user) {
 		File dir = new File(System.getProperty("user.home")
 				+ "/Documents/Ball U/FCG/" + user);
-		File file = new File(dir + "quest.txt");
+		File file = new File(dir + "/quest.txt");
 		String[] strings = new String[1];
 		if (!file.exists()) {
 			try {

@@ -77,7 +77,6 @@ public class Main implements ActionListener, MouseListener {
 			switch (label.getText()) {
 				case "Quest":
 					System.out.println("Starting quest");
-					new Quest();
 					break;
 				case "MP [WIP]":
 					System.out.println("Starting multiplayer");
