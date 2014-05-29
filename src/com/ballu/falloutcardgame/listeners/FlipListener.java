@@ -16,20 +16,12 @@ public class FlipListener implements MouseListener {
 		Card card = (Card) arg0.getSource();
 		if (SwingUtilities.isRightMouseButton(arg0)) {
 			if (!card.isFlipped()) {
+				card.flip();
 				card.setFlipped(true);
 				System.out.println("Fired");
-				card.removeAll();
-				card.flip();
-				card.repaint();
 			} else if (card.isFlipped()) {
+				card.flip();
 				card.setFlipped(false);
-				card.removeAll();
-				if (card.isEnemy()) {
-					card.addAllEnemy();
-				} else if (card.isWeapon()) {
-					card.addAllWeapon();
-				}
-				card.repaint();
 				System.out.println("Flipped back");
 			}
 		} else if ((SwingUtilities.isLeftMouseButton(arg0))

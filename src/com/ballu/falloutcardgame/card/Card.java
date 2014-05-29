@@ -1,7 +1,6 @@
 package com.ballu.falloutcardgame.card;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Rectangle;
 
 import javax.swing.JLabel;
@@ -9,71 +8,31 @@ import javax.swing.JPanel;
 
 import com.ballu.falloutcardgame.listeners.FlipListener;
 
-public class Card extends JPanel {
-	private JLabel		cardName;
-	private JLabel		cardLife;
-	private JLabel		cardAttack;
-	private JLabel		cardUpgrade;
-	private JLabel		cardBack;
-	private Rectangle	name			= new Rectangle(0, 0, 100, 20);
-	private Rectangle	life			= new Rectangle(0, 110, 100, 20);
-	private Rectangle	attack			= new Rectangle(0, 130, 100, 20);
-	private Rectangle	upgrade			= new Rectangle(50, 0, 50, 50);
-	private Rectangle	back			= new Rectangle(0, 0, 100, 150);
-	private JLabel[]	enemyLabels		= { cardName, cardLife, cardAttack,
-			cardUpgrade, cardBack		};
-	private JLabel[]	weaponLabels	= { cardName, cardLife, cardAttack,
-			cardBack					};
-	private Rectangle[]	enemyBounds		= { name, life, attack, upgrade, back };
-	private Rectangle[]	weaponBounds	= { name, life, attack, back };
-	private boolean		enemy			= false;
-	private boolean		weapon			= false;
-	private boolean		selected		= false;
-	private boolean		flipped			= false;
-	private boolean		selectable		= false;
+public abstract class Card extends JPanel {
 	
-	public Card(String title, String description, int damage, int health,
-			int level) {
+	protected JLabel	name;
+	protected JLabel	back;
+	private Rectangle	nameRec	= new Rectangle(0, 0, 100, 20);
+	private Rectangle	backRec	= new Rectangle(0, 0, 100, 150);
+	public boolean		enemy, weapon, chem, clothing, food, magazine, book,
+			selected, flipped, selectable;
+	
+	private JLabel[] labels = {name, back};
+	private Rectangle[] bounds = {nameRec, backRec};
+	
+	public Card(String title, String description) {
 		addMouseListener(new FlipListener());
+		String[] strings = {title, wrap(description)};
 		setLayout(null);
 		setBackground(Color.GREEN);
 		System.out.println("Beginning card creation");
 		setSize(100, 150);
-		String[] texts = { title, "Health: " + Integer.toString(health),
-				"Attack: " + Integer.toString(health), Integer.toString(level),
-				wrap(description) };
-		for (int i = 0; i < 5; i++) {
-			enemyLabels[i] = new JLabel();
-			enemyLabels[i].setBounds(enemyBounds[i]);
-			enemyLabels[i].setText(texts[i]);
-			if (i == 3) {
-				enemyLabels[i].setFont(new Font("Times Roman", 0, 32));
-				enemyLabels[i].setHorizontalAlignment(0);
-			}
+		for(int i = 0; i <labels.length; i++){
+			labels[i] = new JLabel(strings[i]);
+			labels[i].setBounds(bounds[i]);
+			add(labels[i]);
 		}
 		System.out.println("Created new card");
-		addAllEnemy();
-	}
-	
-	public Card(String title, int damaged, int maxDamage, int damage,
-			String description) {
-		addMouseListener(new FlipListener());
-		setLayout(null);
-		setBackground(Color.GREEN);
-		System.out.println("Beginning card creation");
-		setSize(100, 150);
-		String[] texts = {
-				title,
-				"Con: " + Integer.toString(maxDamage - damaged) + "/"
-						+ maxDamage, "Attack: " + Integer.toString(damage),
-				wrap(description) };
-		for (int i = 0; i < 4; i++) {
-			weaponLabels[i] = new JLabel();
-			weaponLabels[i].setBounds(weaponBounds[i]);
-			weaponLabels[i].setText(texts[i]);
-		}
-		System.out.println("Created new card");
-		addAllWeapon();
 	}
 	
 	private String wrap(String input) {
@@ -82,33 +41,13 @@ public class Card extends JPanel {
 	}
 	
 	public String getName() {
-		if (isWeapon()) {
-			return weaponLabels[0].getText();
-		}
-		if (isEnemy()) {
-			return enemyLabels[0].getText();
-		}
-		return "Not a real card";
+		return name.getText();
 	}
 	
-	public void addAllEnemy() {
-		for (int i = 0; i < 4; i++) {
-			add(enemyLabels[i]);
-		}
-	}
+	public abstract void flip();
 	
-	public void addAllWeapon() {
-		for (int i = 0; i < 3; i++) {
-			add(weaponLabels[i]);
-		}
-	}
-	
-	public void flip() {
-		if (isEnemy()) {
-			add(enemyLabels[4]);
-		} else if (isWeapon()) {
-			add(weaponLabels[3]);
-		}
+	public static String convert(int in) {
+		return Integer.toString(in);
 	}
 	
 	public void setWeapon(boolean b) {
@@ -117,6 +56,26 @@ public class Card extends JPanel {
 	
 	public void setEnemy(boolean b) {
 		enemy = b;
+	}
+	
+	public void setChem(boolean b) {
+		chem = b;
+	}
+	
+	public void setBook(boolean b) {
+		book = b;
+	}
+	
+	public void setClothing(boolean b) {
+		clothing = b;
+	}
+	
+	public void setFood(boolean b) {
+		food = b;
+	}
+	
+	public void setMagazine(boolean b) {
+		magazine = b;
 	}
 	
 	public void setFlipped(boolean b) {
@@ -137,6 +96,26 @@ public class Card extends JPanel {
 	
 	public boolean isEnemy() {
 		return enemy;
+	}
+	
+	public boolean isChem() {
+		return chem;
+	}
+	
+	public boolean isBook() {
+		return book;
+	}
+	
+	public boolean isClothing() {
+		return clothing;
+	}
+	
+	public boolean isFood() {
+		return food;
+	}
+	
+	public boolean isMagazine() {
+		return magazine;
 	}
 	
 	public boolean isFlipped() {

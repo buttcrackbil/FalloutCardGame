@@ -9,6 +9,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import com.ballu.falloutcardgame.card.weapon.Weapon;
+
 public class ClientLogin extends JFrame {
 	
 	protected static JComboBox<String>	userSelect	= new JComboBox<String>();

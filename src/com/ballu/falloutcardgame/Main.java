@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
+import com.ballu.falloutcardgame.card.enemy.Enemy;
 import com.ballu.falloutcardgame.labels.PictureLabel;
 import com.ballu.falloutcardgame.quest.Quest;
 
@@ -27,6 +28,8 @@ public class Main implements ActionListener, MouseListener {
 	private static PictureLabel[]	labels	= { quest, multi, deck, option };
 	
 	public static void start(String user) {
+		Enemy weapon = new Enemy("", "", 5, 10, 5);
+		weapon.setLocation(100, 100);
 		frame.setLayout(null);
 		Main.user = user;
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -46,6 +49,7 @@ public class Main implements ActionListener, MouseListener {
 		}
 		quit.setLocation(0, extendedHeight - 100);
 		panel.add(quit);
+		panel.add(weapon);
 		frame.add(panel);
 		panel.repaint();
 	}
