@@ -2,7 +2,6 @@ package com.ballu.falloutcardgame.card.enemy;
 
 import java.awt.Font;
 import java.awt.Rectangle;
-import java.sql.Types;
 
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -21,18 +20,24 @@ public class Enemy extends Card {
 	
 	// Card types
 	public static final int			INFERNO			= 0;
+	public static final int			LAUNCHER		= 1;
+	public static final int			SNIPER			= 2;
+	public static final int			SOLDIER			= 3;
 	
 	// Names
-	private static final String[]	names			= {};
+	private static final String[]	names			= { "Inferno", "Launcher",
+			"Sniper", "Soldier"					};
 	
 	// Info
-	private static final String[]	descriptions	= { "Cards attacked with this card will be damaged 1 health for 2 turns if caught on fire. 50% chance to set on fire" };
+	private static final String[]	descriptions	= {
+			"Cards attacked with this card will be damaged 1 health for 2 turns if caught on fire. 50% chance to set on fire",
+			"Causes massive damage to card", "Headshot: Instant kill one card", "No special abilities" };
 	
 	// Health
-	private static final String[]	health			= {};
+	private static final String[]	health			= { "5", "5", "3", "5" };
 	
 	// Attacks
-	private static final String[]	attacks			= {};
+	private static final String[]	attacks			= { "5", "10", "8", "6" };
 	
 	public Enemy(int input) {
 		super(names[input], descriptions[input]);

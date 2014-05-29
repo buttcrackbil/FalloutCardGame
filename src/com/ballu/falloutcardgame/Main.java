@@ -9,7 +9,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-import com.ballu.falloutcardgame.card.enemy.American;
 import com.ballu.falloutcardgame.card.enemy.Enemy;
 import com.ballu.falloutcardgame.labels.PictureLabel;
 import com.ballu.falloutcardgame.user.User;
@@ -41,7 +40,7 @@ public class Main extends JFrame implements ActionListener, MouseListener {
 	
 	public Main(String user) {
 		maxMana = User.loadUser(user)[0];
-		add(new American(Enemy.INFERNO).setPlace(0, 0));
+		add(new Enemy(Enemy.SOLDIER).setPlace(0, 0));
 		setTitle("Fallout Card Game");
 		setLayout(null);
 		Main.user = user;
