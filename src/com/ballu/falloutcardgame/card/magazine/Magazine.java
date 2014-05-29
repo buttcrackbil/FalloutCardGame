@@ -4,4 +4,13 @@ import com.ballu.falloutcardgame.card.Card;
 
 public class Magazine extends Card {
 	
+	public Magazine(String title, String description) {
+		super(title, description);
+	}
+	
+	@Override
+	public void flip() {
+		
+	}
+	
 }

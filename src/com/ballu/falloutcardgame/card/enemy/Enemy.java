@@ -44,6 +44,7 @@ public class Enemy extends Card {
 			add(super.labels[1]);
 			repaint();
 		} else {
+			removeAll();
 			for (int i = 0; i < labels.length; i++) {
 				add(labels[i]);
 			}

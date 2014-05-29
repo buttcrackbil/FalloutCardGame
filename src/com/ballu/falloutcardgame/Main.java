@@ -9,27 +9,29 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-import com.ballu.falloutcardgame.card.enemy.Enemy;
 import com.ballu.falloutcardgame.labels.PictureLabel;
 import com.ballu.falloutcardgame.quest.Quest;
+import com.ballu.falloutcardgame.user.User;
 
 public class Main implements ActionListener, MouseListener {
-	public static JFrame			frame	= new JFrame("Card Game");
-	public static JPanel			panel	= new JPanel();
+	public static JFrame			frame		= new JFrame("Card Game");
+	public static JPanel			panel		= new JPanel();
 	private static int				extendedWidth;
 	private static int				extendedHeight;
-	private static PictureLabel		quest	= new PictureLabel("Quest");
-	private static PictureLabel		multi	= new PictureLabel("MP [WIP]");
-	private static PictureLabel		deck	= new PictureLabel("Edit Deck");
-	private static PictureLabel		option	= new PictureLabel("Options");
-	private static PictureLabel		quit	= new PictureLabel("Quit");
+	private static PictureLabel		quest		= new PictureLabel("Quest");
+	private static PictureLabel		multi		= new PictureLabel("MP [WIP]");
+	private static PictureLabel		deck		= new PictureLabel("Edit Deck");
+	private static PictureLabel		option		= new PictureLabel("Options");
+	private static PictureLabel		switchUser	= new PictureLabel("Switch User");
+	private static PictureLabel		quit		= new PictureLabel("Quit");
 	public static String			user;
 	
-	private static PictureLabel[]	labels	= { quest, multi, deck, option };
+	private static PictureLabel[]	labels		= { quest, multi, deck, option, switchUser };
+	
+	private static String			maxMana;
 	
 	public static void start(String user) {
-		Enemy weapon = new Enemy("", "", 5, 10, 5);
-		weapon.setLocation(100, 100);
+		maxMana = User.loadUser(user)[0];
 		frame.setLayout(null);
 		Main.user = user;
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -49,7 +51,6 @@ public class Main implements ActionListener, MouseListener {
 		}
 		quit.setLocation(0, extendedHeight - 100);
 		panel.add(quit);
-		panel.add(weapon);
 		frame.add(panel);
 		panel.repaint();
 	}
@@ -86,6 +87,9 @@ public class Main implements ActionListener, MouseListener {
 					break;
 				case "Options":
 					System.out.println("Starting options");
+					break;
+				case "Switch User":
+					frame.dispose();
 					break;
 				case "Quit":
 					System.out.println("Quitting");

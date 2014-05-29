@@ -23,16 +23,17 @@ public abstract class Card extends JPanel {
 	private Rectangle[]	bounds	= { nameRec, backRec };
 	
 	public Card(String title, String description) {
+		setLayout(null);
 		addMouseListener(new FlipListener());
 		String[] strings = { title, wrap(description) };
-		setLayout(null);
 		setBackground(Color.GREEN);
 		System.out.println("Beginning card creation");
 		setSize(100, 150);
 		for (int i = 0; i < labels.length; i++) {
 			labels[i] = new JLabel(strings[i]);
 			labels[i].setBounds(bounds[i]);
-			add(labels[i]);
+			if (i != 1)
+				add(labels[i]);
 		}
 		System.out.println("Created new card");
 	}

@@ -12,6 +12,7 @@ public class Weapon extends Card {
 	private Rectangle	attackRec	= new Rectangle(0, 130, 100, 20);
 	
 	public Weapon(String title, String description, int damage) {
+		super(title, description);
 		System.out.println("Beggining Weapon Creation");
 		attack = new JLabel("+" + damage);
 		attack.setBounds(attackRec);
@@ -24,12 +25,12 @@ public class Weapon extends Card {
 	public void flip() {
 		if (!flipped) {
 			removeAll();
-			add(back);
+			add(super.labels[1]);
 			repaint();
 		} else {
 			removeAll();
 			add(attack);
-			add(name);
+			add(super.labels[0]);
 			repaint();
 		}
 	}
