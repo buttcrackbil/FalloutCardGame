@@ -6,10 +6,10 @@ import java.io.FilenameFilter;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
-import com.ballu.falloutcardgame.card.weapon.Weapon;
+import javax.swing.SwingConstants;
 
 public class ClientLogin extends JFrame {
 	
@@ -24,10 +24,13 @@ public class ClientLogin extends JFrame {
 		setUndecorated(true);
 		JButton confirm = new JButton("Select");
 		JButton newUser = new JButton("Create User");
+		JLabel selectUser = new JLabel("Select User");
 		JButton quit = new JButton("Quit");
 		setTitle("Select User");
 		setSize(200, 200);
 		setLocationRelativeTo(null);
+		selectUser.setBounds(0, 0, 200, 20);
+		selectUser.setHorizontalAlignment(SwingConstants.CENTER);
 		userSelect.setBounds(25, (getHeight() - 25) / 2, 150, 25);
 		confirm.setBounds(100, getHeight() - 20, 100, 20);
 		newUser.setBounds(25, getHeight() - 40, 150, 20);
@@ -35,6 +38,7 @@ public class ClientLogin extends JFrame {
 		confirm.addActionListener(new ClientListener());
 		newUser.addActionListener(new ClientListener());
 		quit.addActionListener(new ClientListener());
+		add(selectUser);
 		panel.add(userSelect);
 		panel.add(confirm);
 		panel.add(newUser);
