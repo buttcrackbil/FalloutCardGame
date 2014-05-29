@@ -25,7 +25,7 @@ public class ClientListener implements ActionListener {
 				
 				// Makes certain that a user is chosen
 				if (user != null) {
-					Main.start(user);
+					new Main(user);
 				}
 				break;
 			case "Create User":
