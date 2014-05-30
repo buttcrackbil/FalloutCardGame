@@ -37,6 +37,7 @@ public class SelectionListener implements MouseListener {
 							System.out.println("No card in memory");
 							selectedWeapon = (Weapon) card;
 							card.setSelected(true);
+							card.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
 						} else if (selectedWeapon != null) {
 							System.out.println("Card already in memory. Erasing.");
 							// Undoes selection to original selected car
@@ -47,10 +48,9 @@ public class SelectionListener implements MouseListener {
 							// Changes selected card
 							selectedWeapon = (Weapon) card;
 							card.setSelected(true);
+							card.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
 						}
 					}
-					
-					card.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
 				}
 			} else if (card.isEnemy()) {
 				if (card.isSelectable()) {
@@ -62,6 +62,7 @@ public class SelectionListener implements MouseListener {
 						if (selectedEnemy == null) {
 							selectedEnemy = (Enemy) card;
 							card.setSelected(true);
+							card.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
 						} else if (selectedEnemy != null) {
 							// Undoes selection to original selected car
 							selectedEnemy.setBorder(null);
@@ -71,11 +72,10 @@ public class SelectionListener implements MouseListener {
 							// Changes selected card
 							selectedEnemy = (Enemy) card;
 							card.setSelected(true);
+							card.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
 						}
 					}
 				}
-				
-				card.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
 			}
 		}
 	}
