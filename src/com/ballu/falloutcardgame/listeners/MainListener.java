@@ -1,4 +1,4 @@
-package com.ballu.falloutcardgame;
+package com.ballu.falloutcardgame.listeners;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;

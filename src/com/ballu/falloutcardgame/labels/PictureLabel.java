@@ -5,7 +5,7 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-import com.ballu.falloutcardgame.MainListener;
+import com.ballu.falloutcardgame.listeners.MainListener;
 
 public class PictureLabel extends JLabel {
 	
