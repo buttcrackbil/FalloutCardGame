@@ -9,6 +9,8 @@ import com.ballu.falloutcardgame.card.enemy.Enemy;
 
 public class Weapon extends Card {
 	
+	private Enemy user;
+	
 	private JLabel				attack;
 	private Rectangle			attackRec	= new Rectangle(0, getHeight() - 20, 100, 20);
 	
@@ -39,5 +41,14 @@ public class Weapon extends Card {
 		Weapon output = new Weapon(input.getName(), input.getInfo(),
 				input.getDamage());
 		return output;
+	}
+	
+	public void setUser(Enemy input){
+		user = input;
+	}
+	
+	@Override
+	public Enemy getUser(){
+		return user;
 	}
 }

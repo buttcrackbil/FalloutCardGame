@@ -78,6 +78,8 @@ public class Enemy extends Card {
 	
 	public void equipWeapon(Weapon weapon) {
 		weapon.setLocation(getLocation().x, getLocation().y - 25);
+		weapon.setUser(this);
+		updateAttack(weapon.getDamage());
 		repaint();
 	}
 	
@@ -137,5 +139,11 @@ public class Enemy extends Card {
 		Enemy output = new Enemy(input.getName(), input.getInfo(),
 				input.getHealth(), input.getAttack());
 		return output;
+	}
+
+	//Never called
+	@Override
+	public Enemy getUser() {
+		return null;
 	}
 }

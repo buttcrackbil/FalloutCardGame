@@ -3,14 +3,16 @@ package com.ballu.falloutcardgame.card;
 import java.awt.Color;
 import java.awt.Rectangle;
 
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import com.ballu.falloutcardgame.card.enemy.Enemy;
 import com.ballu.falloutcardgame.listeners.ComponentMover;
 import com.ballu.falloutcardgame.listeners.SelectionListener;
 
-public class Card extends JPanel {
+public abstract class Card extends JPanel {
 	
 	ComponentMover			cm			= new ComponentMover();
 	
@@ -56,6 +58,7 @@ public class Card extends JPanel {
 			labels[i].setVerticalAlignment(SwingConstants.NORTH);
 			add(labels[i]);
 		}
+		setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		System.out.println("Created new card");
 	}
 	
@@ -171,4 +174,6 @@ public class Card extends JPanel {
 	public int getID() {
 		return id;
 	}
+	
+	public abstract Enemy getUser();
 }

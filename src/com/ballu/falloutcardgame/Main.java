@@ -47,15 +47,17 @@ public class Main extends JFrame implements ActionListener {
 		Weapon weapon1 = Weapon.get(Weapon.rifle1);
 		Weapon weapon2 = Weapon.get(Weapon.rifle2);
 		
-		enemy1.setPlace(0, 0).setSelectable(true);
-		enemy2.setPlace(150, 0).setSelectable(true);
-		weapon1.setPlace(0, 250).setSelectable(true);
-		weapon2.setPlace(150, 250).setSelectable(true);
+		enemy1.setPlace(0, 50);
+		enemy2.setPlace(150, 50).setSelectable(true);
+		weapon1.setPlace(0, 300);
+		weapon2.setPlace(150, 300).setSelectable(true);
 		
 		panel.add(enemy1);
 		panel.add(enemy2);
 		panel.add(weapon1);
 		panel.add(weapon2);
+		
+		enemy1.equipWeapon(weapon1);
 		
 		maxMana = User.loadUser(user)[0];
 		setTitle("Fallout Card Game");
