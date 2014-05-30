@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import com.ballu.falloutcardgame.listeners.ComponentMover;
+import com.ballu.falloutcardgame.listeners.SelectionListener;
 
 public class Card extends JPanel {
 	
@@ -31,6 +32,7 @@ public class Card extends JPanel {
 	private int				id;
 	
 	public Card(String title, String description) {
+		addMouseListener(new SelectionListener());
 		setLayout(null);
 		setSize(150, 225);
 		bounds[1] = new Rectangle(0, getHeight() - 100, 150, 50);

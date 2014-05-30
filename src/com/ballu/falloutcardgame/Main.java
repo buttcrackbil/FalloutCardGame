@@ -2,14 +2,12 @@ package com.ballu.falloutcardgame;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 
 import com.ballu.falloutcardgame.card.enemy.Enemy;
+import com.ballu.falloutcardgame.card.weapon.Weapon;
 import com.ballu.falloutcardgame.labels.PictureLabel;
 import com.ballu.falloutcardgame.listeners.ComponentMover;
 import com.ballu.falloutcardgame.user.User;
@@ -44,6 +42,21 @@ public class Main extends JFrame implements ActionListener {
 		// Called to create cards (working on another way to call class)
 		new Enemy();
 		
+		Enemy enemy1 = Enemy.get(Enemy.americanFlamer);
+		Enemy enemy2 = Enemy.get(Enemy.americanLauncher);
+		Weapon weapon1 = Weapon.get(Weapon.rifle1);
+		Weapon weapon2 = Weapon.get(Weapon.rifle2);
+		
+		enemy1.setPlace(0, 0).setSelectable(true);
+		enemy2.setPlace(150, 0).setSelectable(true);
+		weapon1.setPlace(0, 250).setSelectable(true);
+		weapon2.setPlace(150, 250).setSelectable(true);
+		
+		panel.add(enemy1);
+		panel.add(enemy2);
+		panel.add(weapon1);
+		panel.add(weapon2);
+		
 		maxMana = User.loadUser(user)[0];
 		setTitle("Fallout Card Game");
 		setLayout(null);
@@ -51,7 +64,7 @@ public class Main extends JFrame implements ActionListener {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(500, 500);
 		setUndecorated(true);
-		setExtendedState(6);
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setVisible(true);
 		panel.setLayout(null);
 		extendedWidth = getWidth();
