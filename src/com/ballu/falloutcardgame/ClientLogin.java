@@ -1,3 +1,5 @@
+package com.ballu.falloutcardgame;
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.File;
@@ -11,13 +13,15 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import com.ballu.falloutcardgame.listeners.ClientListener;
+
 public class ClientLogin extends JFrame {
 	
-	protected static JComboBox<String>	userSelect	= new JComboBox<String>();
-	protected JPanel					panel		= new JPanel();
-	protected static File				dir			= new File(
-															System.getProperty("user.home")
-																	+ "/Documents/Ball U/FCG");
+	public static JComboBox<String>	userSelect	= new JComboBox<String>();
+	protected JPanel				panel		= new JPanel();
+	protected static File			dir			= new File(
+														System.getProperty("user.home")
+																+ "/Documents/Ball U/FCG");
 	
 	public ClientLogin() {
 		panel.setLayout(null);
