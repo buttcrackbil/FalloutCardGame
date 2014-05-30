@@ -11,11 +11,6 @@ public class Clothing extends Card {
 		defense = armor;
 	}
 	
-	@Override
-	public void flip() {
-		
-	}
-	
 	public int getArmor(){
 		return defense;
 	}

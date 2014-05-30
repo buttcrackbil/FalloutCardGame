@@ -8,9 +8,4 @@ public class Chem extends Card {
 		super(title, description);
 	}
 	
-	@Override
-	public void flip() {
-		
-	}
-	
 }

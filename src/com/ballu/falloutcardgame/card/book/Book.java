@@ -8,9 +8,4 @@ public class Book extends Card {
 		super(title, description);
 	}
 	
-	@Override
-	public void flip() {
-		
-	}
-	
 }

@@ -8,9 +8,4 @@ public class Food extends Card {
 		super(title, description);
 	}
 	
-	@Override
-	public void flip() {
-		
-	}
-	
 }

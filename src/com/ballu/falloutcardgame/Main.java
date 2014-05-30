@@ -11,9 +11,10 @@ import javax.swing.SwingUtilities;
 
 import com.ballu.falloutcardgame.card.enemy.Enemy;
 import com.ballu.falloutcardgame.labels.PictureLabel;
+import com.ballu.falloutcardgame.listeners.ComponentMover;
 import com.ballu.falloutcardgame.user.User;
 
-public class Main extends JFrame implements ActionListener, MouseListener {
+public class Main extends JFrame implements ActionListener {
 	public static JPanel			panel		= new JPanel();
 	private static int				extendedWidth;
 	private static int				extendedHeight;
@@ -39,8 +40,11 @@ public class Main extends JFrame implements ActionListener, MouseListener {
 	}
 	
 	public Main(String user) {
+		
+		// Called to create cards (working on another way to call class)
+		new Enemy();
+		
 		maxMana = User.loadUser(user)[0];
-		add(new Enemy(Enemy.SOLDIER).setPlace(0, 0));
 		setTitle("Fallout Card Game");
 		setLayout(null);
 		Main.user = user;
@@ -60,6 +64,7 @@ public class Main extends JFrame implements ActionListener, MouseListener {
 			panel.add(labels[i]);
 		}
 		quit.setLocation(0, extendedHeight - 100);
+		ComponentMover cm = new ComponentMover();
 		panel.add(quit);
 		add(panel);
 		panel.repaint();
@@ -68,62 +73,5 @@ public class Main extends JFrame implements ActionListener, MouseListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		System.exit(0);
-	}
-	
-	@Override
-	public void mouseClicked(MouseEvent arg0) {
-		
-		PictureLabel label = (PictureLabel) arg0.getSource();
-		
-		if (SwingUtilities.isLeftMouseButton(arg0)) {
-			switch (label.getText()) {
-				case "Quest":
-					System.out.println("Starting quest");
-					break;
-				case "MP [WIP]":
-					System.out.println("Starting multiplayer");
-					break;
-				case "Edit Deck":
-					System.out.println("Starting deck editing");
-					break;
-				case "Options":
-					System.out.println("Starting options");
-					break;
-				case "Switch User":
-					dispose();
-					break;
-				case "Quit":
-					System.out.println("Quitting");
-					System.exit(0);
-					break;
-				default:
-					System.out.println(label.getText() + " not registered");
-					break;
-			}
-		}
-	}
-	
-	@Override
-	public void mouseEntered(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	@Override
-	public void mouseExited(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	@Override
-	public void mousePressed(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	@Override
-	public void mouseReleased(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 }

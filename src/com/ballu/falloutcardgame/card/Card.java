@@ -5,35 +5,54 @@ import java.awt.Rectangle;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
-import com.ballu.falloutcardgame.listeners.FlipListener;
+import com.ballu.falloutcardgame.listeners.ComponentMover;
 
-public abstract class Card extends JPanel {
+public class Card extends JPanel {
 	
-	protected JLabel	name;
-	protected JLabel	back;
+	ComponentMover			cm			= new ComponentMover();
 	
-	private Rectangle	nameRec	= new Rectangle(0, 0, 100, 40);
-	private Rectangle	backRec	= new Rectangle(0, 0, 100, 150);
+	private JLabel			name, back;
 	
-	public boolean		enemy, weapon, chem, clothing, food, magazine, book,
-			selected, flipped, selectable;
+	private Rectangle		nameRec		= new Rectangle(0, 0, 150, 40);
+	private Rectangle		backRec		= new Rectangle(0, getHeight() - 150,
+												150, 50);
 	
-	protected JLabel[]	labels	= { name, back };
-	private Rectangle[]	bounds	= { nameRec, backRec };
+	private JLabel[]		labels		= { name, back };
+	private Rectangle[]		bounds		= { nameRec, backRec };
+	
+	private boolean			enemy, weapon, chem, clothing, food, magazine,
+			book, selected, flipped, selectable;
+	
+	private static Card[]	cardList	= new Card[100];
+	
+	private static int		idTracker	= 0;
+	private int				id;
 	
 	public Card(String title, String description) {
 		setLayout(null);
-		addMouseListener(new FlipListener());
-		String[] strings = { wrap(title), wrap(description) };
+		setSize(150, 225);
+		bounds[1] = new Rectangle(0, getHeight() - 100, 150, 50);
+		String[] strings = new String[2];
+		if (!title.contains("<html>")) {
+			strings[0] = wrap(title);
+			strings[1] = wrap(description);
+			cardList[idTracker] = this;
+			id = idTracker;
+			idTracker++;
+			System.out.println("Card ID " + id + " was assigned to " + title);
+		} else {
+			strings[0] = title;
+			strings[1] = description;
+		}
 		setBackground(Color.GREEN);
 		System.out.println("Beginning card creation");
-		setSize(100, 150);
 		for (int i = 0; i < labels.length; i++) {
 			labels[i] = new JLabel(strings[i]);
 			labels[i].setBounds(bounds[i]);
-			if (i != 1)
-				add(labels[i]);
+			labels[i].setVerticalAlignment(SwingConstants.NORTH);
+			add(labels[i]);
 		}
 		System.out.println("Created new card");
 	}
@@ -43,16 +62,18 @@ public abstract class Card extends JPanel {
 		return output;
 	}
 	
-	public Card setPlace(int x, int y){
+	public Card setPlace(int x, int y) {
 		setLocation(x, y);
 		return this;
 	}
 	
 	public String getName() {
-		return name.getText();
+		return labels[0].getText();
 	}
 	
-	public abstract void flip();
+	public String getInfo() {
+		return labels[1].getText();
+	}
 	
 	public static String convert(int in) {
 		return Integer.toString(in);
@@ -98,6 +119,13 @@ public abstract class Card extends JPanel {
 		selected = b;
 	}
 	
+	public void setMovable(boolean b) {
+		if (b)
+			cm.registerComponent(this);
+		if (!b)
+			cm.deregisterComponent(this);
+	}
+	
 	public boolean isWeapon() {
 		return weapon;
 	}
@@ -136,5 +164,9 @@ public abstract class Card extends JPanel {
 	
 	public boolean isSelected() {
 		return selected;
+	}
+	
+	public int getID() {
+		return id;
 	}
 }

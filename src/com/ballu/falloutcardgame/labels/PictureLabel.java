@@ -5,7 +5,7 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-import com.ballu.falloutcardgame.Main;
+import com.ballu.falloutcardgame.MainListener;
 
 public class PictureLabel extends JLabel {
 	
@@ -16,6 +16,6 @@ public class PictureLabel extends JLabel {
 		setText(text);
 		setHorizontalAlignment(SwingConstants.CENTER);
 		setVerticalAlignment(SwingConstants.BOTTOM);
-		addMouseListener(new Main());
+		addMouseListener(new MainListener());
 	}
 }

@@ -21,17 +21,7 @@ public class Weapon extends Card {
 		repaint();
 	}
 	
-	@Override
-	public void flip() {
-		if (!flipped) {
-			removeAll();
-			add(super.labels[1]);
-			repaint();
-		} else {
-			removeAll();
-			add(attack);
-			add(super.labels[0]);
-			repaint();
-		}
+	public int getDamage() {
+		return Integer.parseInt(attack.getText().substring(1));
 	}
 }
