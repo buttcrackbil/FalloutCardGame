@@ -9,12 +9,10 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import com.ballu.falloutcardgame.card.enemy.Enemy;
-import com.ballu.falloutcardgame.listeners.ComponentMover;
+import com.ballu.falloutcardgame.card.weapon.Weapon;
 import com.ballu.falloutcardgame.listeners.SelectionListener;
 
 public abstract class Card extends JPanel {
-	
-	ComponentMover			cm			= new ComponentMover();
 	
 	private JLabel			name, back;
 	
@@ -28,7 +26,7 @@ public abstract class Card extends JPanel {
 	private boolean			enemy, weapon, chem, clothing, food, magazine,
 			book, selected, flipped, selectable;
 	
-	private static Card[]	cardList	= new Card[100];
+	public static Card[]	cardList	= new Card[100];
 	
 	private static int		idTracker	= 0;
 	private int				id;
@@ -124,13 +122,6 @@ public abstract class Card extends JPanel {
 		selected = b;
 	}
 	
-	public void setMovable(boolean b) {
-		if (b)
-			cm.registerComponent(this);
-		if (!b)
-			cm.deregisterComponent(this);
-	}
-	
 	public boolean isWeapon() {
 		return weapon;
 	}
@@ -176,4 +167,24 @@ public abstract class Card extends JPanel {
 	}
 	
 	public abstract Enemy getUser();
+	
+	public static void registerCards() {
+		for (int i = 0; i < 100; i++) {
+			if(cardList[i] == null){
+				break;
+			}else{
+				if(cardList[i].isEnemy()){
+					Enemy.enemies.add((Enemy) cardList[i]);
+					System.out.println("Registered " + cleanUp(cardList[i].getName()));
+				}else if(cardList[i].isWeapon()){
+					Weapon.weapons.add((Weapon) cardList[i]);
+					System.out.println("Registered " + cleanUp(cardList[i].getName()));
+				}
+			}
+		}
+	}
+	
+	public static String cleanUp(String in){
+		return in.substring(6, in.length() - 7);
+	}
 }

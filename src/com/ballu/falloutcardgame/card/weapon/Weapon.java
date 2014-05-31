@@ -1,6 +1,7 @@
 package com.ballu.falloutcardgame.card.weapon;
 
 import java.awt.Rectangle;
+import java.util.ArrayList;
 
 import javax.swing.JLabel;
 
@@ -9,46 +10,50 @@ import com.ballu.falloutcardgame.card.enemy.Enemy;
 
 public class Weapon extends Card {
 	
-	private Enemy user;
+	private Enemy					user;
 	
-	private JLabel				attack;
-	private Rectangle			attackRec	= new Rectangle(0, getHeight() - 20, 100, 20);
+	private JLabel					attack;
+	private Rectangle				attackRec	= new Rectangle(0,
+														getHeight() - 20, 100,
+														20);
 	
-	public static final Weapon	rifle1		= new Weapon("American Rifle",
-													"No special abilities", 5);
-	public static final Weapon	rifle2		= new Weapon("Chinese Rifle",
-													"No special abilities", 5);
+	public static ArrayList<Weapon>	weapons		= new ArrayList<Weapon>();
+	
+	public static Weapon gaussRifle;
+	public static Weapon trenchKnife;
 	
 	public Weapon(String title, String description, int damage) {
 		super(title, description);
-		System.out.println("Beggining Weapon Creation");
+		weapons.add(this);
+		System.out.println("Beginning Weapon Creation");
 		attack = new JLabel("+" + damage);
 		attack.setBounds(attackRec);
 		add(attack);
 		setWeapon(true);
-		repaint();
-	}
-	
-	public void addTo(Enemy enemy) {
-		enemy.equipWeapon(this);
+		System.out.println("Finished weapon creation");
 	}
 	
 	public int getDamage() {
 		return Integer.parseInt(attack.getText().substring(1));
 	}
 	
-	public static Weapon get(Weapon input){
+	public static Weapon get(Weapon input) {
 		Weapon output = new Weapon(input.getName(), input.getInfo(),
 				input.getDamage());
 		return output;
 	}
 	
-	public void setUser(Enemy input){
+	public void setUser(Enemy input) {
 		user = input;
 	}
 	
 	@Override
-	public Enemy getUser(){
+	public Enemy getUser() {
 		return user;
+	}
+	
+	public static void setUp() {
+		gaussRifle = new Weapon("Gauss Rifle", "A very accurate rifle", 5);
+		trenchKnife = new Weapon("Trench Knife", "A large knife", 2);
 	}
 }

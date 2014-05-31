@@ -6,6 +6,7 @@ import java.awt.event.MouseListener;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
+import com.ballu.falloutcardgame.Main;
 import com.ballu.falloutcardgame.labels.PictureLabel;
 
 public class MainListener implements MouseListener{
@@ -18,6 +19,12 @@ public class MainListener implements MouseListener{
 		if (SwingUtilities.isLeftMouseButton(arg0)) {
 			switch (label.getText()) {
 				case "Quest":
+					for(int i = 0; i < Main.begin.getSize(); i++){
+						Main.begin.getCards()[i].getName();
+						Main.begin.getCards()[i].setLocation(150 * i, 0);
+						Main.panel.add(Main.begin.getCards()[i]);
+						Main.panel.repaint();
+					}
 					System.out.println("Starting quest");
 					break;
 				case "MP [WIP]":

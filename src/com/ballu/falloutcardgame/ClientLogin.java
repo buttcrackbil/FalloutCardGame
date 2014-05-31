@@ -13,6 +13,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import com.ballu.falloutcardgame.card.Card;
+import com.ballu.falloutcardgame.card.enemy.Enemy;
+import com.ballu.falloutcardgame.card.weapon.Weapon;
+import com.ballu.falloutcardgame.graphics.CardGraphics;
 import com.ballu.falloutcardgame.listeners.ClientListener;
 
 public class ClientLogin extends JFrame {
@@ -24,6 +28,11 @@ public class ClientLogin extends JFrame {
 																+ "/Documents/Ball U/FCG");
 	
 	public ClientLogin() {
+		Thread cardGraphics = new Thread(new CardGraphics());
+		cardGraphics.start();
+		Enemy.setUp();
+		Weapon.setUp();
+		Card.registerCards();
 		panel.setLayout(null);
 		setUndecorated(true);
 		JButton confirm = new JButton("Select");

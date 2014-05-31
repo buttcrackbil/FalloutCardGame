@@ -7,10 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import com.ballu.falloutcardgame.card.enemy.Enemy;
-import com.ballu.falloutcardgame.card.weapon.Weapon;
+import com.ballu.falloutcardgame.deck.Deck;
 import com.ballu.falloutcardgame.labels.PictureLabel;
-import com.ballu.falloutcardgame.listeners.ComponentMover;
-import com.ballu.falloutcardgame.user.User;
 
 public class Main extends JFrame implements ActionListener {
 	public static JPanel			panel		= new JPanel();
@@ -29,8 +27,7 @@ public class Main extends JFrame implements ActionListener {
 	private static PictureLabel[]	labels		= { quest, multi, deck, option,
 			switchUser							};
 	
-	// Keeps track of max stamina
-	private static String			maxMana;
+	public static Deck begin = Deck.get(Deck.starterDeck1);
 	
 	// Required for PictureLabel
 	public Main() {
@@ -38,28 +35,6 @@ public class Main extends JFrame implements ActionListener {
 	}
 	
 	public Main(String user) {
-		
-		// Called to create cards (working on another way to call class)
-		new Enemy();
-		
-		Enemy enemy1 = Enemy.get(Enemy.americanFlamer);
-		Enemy enemy2 = Enemy.get(Enemy.americanLauncher);
-		Weapon weapon1 = Weapon.get(Weapon.rifle1);
-		Weapon weapon2 = Weapon.get(Weapon.rifle2);
-		
-		enemy1.setPlace(0, 50);
-		enemy2.setPlace(150, 50).setSelectable(true);
-		weapon1.setPlace(0, 300);
-		weapon2.setPlace(150, 300).setSelectable(true);
-		
-		panel.add(enemy1);
-		panel.add(enemy2);
-		panel.add(weapon1);
-		panel.add(weapon2);
-		
-		enemy1.equipWeapon(weapon1);
-		
-		maxMana = User.loadUser(user)[0];
 		setTitle("Fallout Card Game");
 		setLayout(null);
 		Main.user = user;
@@ -79,7 +54,6 @@ public class Main extends JFrame implements ActionListener {
 			panel.add(labels[i]);
 		}
 		quit.setLocation(0, extendedHeight - 100);
-		ComponentMover cm = new ComponentMover();
 		panel.add(quit);
 		add(panel);
 		panel.repaint();
